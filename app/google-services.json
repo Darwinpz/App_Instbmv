@@ -12,7 +12,20 @@
           "package_name": "com.darwinpz.instbmv"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1052223086313-gfkugncpi7cq8ufbknaikc5vds2djf37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darwinpz.instbmv",
+            "certificate_hash": "6c217c247053963e69256ffcec8121a32fb254ca"
+          }
+        },
+        {
+          "client_id": "1052223086313-8q235mens14o9g0d41kbg6hg4bhtu9ga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDXbk21hxtNPvKTkuQ7LW4-dBYopj3Ld2U"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052223086313-8q235mens14o9g0d41kbg6hg4bhtu9ga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

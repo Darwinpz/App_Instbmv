@@ -14,7 +14,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="@drawable/baseline_chevron_left_24"
-        app:title="Volver"
+        app:title="@string/title_back"
         app:titleTextColor="@color/white" />
 
     <ScrollView
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Registro"
+                android:text="@string/title_register"
                 android:textAlignment="center"
                 android:textSize="34sp"
                 android:textStyle="bold" />
@@ -45,7 +45,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
-                android:text="Correo:"
+                android:text="@string/text_email"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -58,9 +58,10 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:hint="Correo personal"
+                android:hint="@string/text_myemail"
                 android:inputType="textEmailAddress"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="emailAddress" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -69,7 +70,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
-                android:text="Nombre:"
+                android:text="@string/text_name"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -82,9 +83,10 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:hint="Nombres Completos"
+                android:hint="@string/text_fullname"
                 android:inputType="textPersonName"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="name" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -93,7 +95,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
-                android:text="Clave:"
+                android:text="@string/text_password"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -106,9 +108,10 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:hint="Clave de acceso"
+                android:hint="@string/text_mypassword"
                 android:inputType="textPassword"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="password" />
 
             <Button
                 android:id="@+id/btn_registrarse"
@@ -120,7 +123,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/proyecto_light"
                 android:padding="15dp"
-                android:text="Registrarse"
+                android:text="@string/text_signin"
                 android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
