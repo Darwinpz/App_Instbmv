@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    private Button btn_registrarse;
     private EditText editText_email, editText_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +22,7 @@ public class Login extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button btn_ingresar = (Button) findViewById(R.id.btn_ingresar);
-        btn_registrarse = (Button) findViewById(R.id.btn_registrarse);
+        Button btn_registrarse = (Button) findViewById(R.id.btn_registrarse);
 
         editText_email = (EditText) findViewById(R.id.editText_email);
         editText_password = (EditText) findViewById(R.id.editText_password);
@@ -31,7 +30,6 @@ public class Login extends AppCompatActivity {
         toolbar.setOnClickListener(view -> finish());
 
         btn_ingresar.setOnClickListener(view -> {
-
 
             if(!editText_email.getText().toString().isEmpty() && !editText_password.getText().toString().isEmpty()){
 
@@ -51,9 +49,12 @@ public class Login extends AppCompatActivity {
                                         startActivity(i);
 
                                     }else{
-                                        Toast.makeText(this,"Verifica tu correo",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this,"Debes verificar tu correo",Toast.LENGTH_LONG).show();
                                         MainActivity.mAuth.signOut();
                                     }
+
+                                }else{
+                                    Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();
                                 }
 
                             }else{
@@ -61,9 +62,8 @@ public class Login extends AppCompatActivity {
                             }
 
                         });
-
             }else{
-                Toast.makeText(this, "Usuario o clave vacío",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ingresa el usuario y la clave",Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -73,7 +73,6 @@ public class Login extends AppCompatActivity {
             i.setClass(this, Registro.class);
             startActivity(i);
         });
-
 
     }
 }

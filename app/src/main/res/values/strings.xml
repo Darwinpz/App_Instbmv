@@ -8,7 +8,7 @@
     <string name="text_name">Name:</string>
     <string name="text_fullname">Full Name</string>
     <string name="text_email">Email:</string>
-    <string name="text_myemail">Personal Email</string>
+    <string name="text_myemail">My Email</string>
     <string name="text_password">Password:</string>
     <string name="text_mypassword">My Password</string>
     <string name="text_signin">Sign In</string>
@@ -17,5 +17,6 @@
     <string name="text_logo">Logo Institutional</string>
     <string name="text_image">Image</string>
     <string name="menu_config">Configuration</string>
+
 
 </resources>
