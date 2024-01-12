@@ -42,16 +42,19 @@ public class Login extends AppCompatActivity {
 
                                 if(user != null) {
 
-                                    if (user.isEmailVerified()) {
+                                    //if (user.isEmailVerified()) {
 
                                         Intent i = new Intent();
                                         i.setClass(this, Principal.class);
                                         startActivity(i);
 
-                                    }else{
-                                        Toast.makeText(this,"Debes verificar tu correo",Toast.LENGTH_LONG).show();
-                                        MainActivity.mAuth.signOut();
-                                    }
+                                        editText_email.setText("");
+                                        editText_password.setText("");
+
+                                    //}else{
+                                      //  Toast.makeText(this,"Debes verificar tu correo",Toast.LENGTH_LONG).show();
+                                      //  MainActivity.mAuth.signOut();
+                                    //}
 
                                 }else{
                                     Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();

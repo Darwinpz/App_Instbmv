@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Instbmv"
         tools:targetApi="31">
         <activity
+            android:name=".Vi_det_usuario"
+            android:exported="false" />
+        <activity
             android:name=".Principal"
             android:exported="false" />
         <activity

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1052223086313",
+    "firebase_url": "https://app-instbmv-default-rtdb.firebaseio.com",
     "project_id": "app-instbmv",
     "storage_bucket": "app-instbmv.appspot.com"
   },

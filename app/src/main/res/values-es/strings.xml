@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Instbmv</string>
     <string name="title_home">Inicio</string>
+    <string name="title_user">Usuarios</string>
     <string name="title_profile">Perfil</string>
     <string name="title_register">Registro</string>
     <string name="title_back">Volver</string>

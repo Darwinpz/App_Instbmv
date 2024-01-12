@@ -3,17 +3,20 @@ package com.darwinpz.instbmv;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.darwinpz.instbmv.Adaptador.ViewPageAdapter;
 import com.darwinpz.instbmv.Fragmentos.Fragment_Perfil;
 import com.darwinpz.instbmv.Fragmentos.Fragmento_Inicio;
+import com.darwinpz.instbmv.Fragmentos.Fragmento_Usuario;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class Principal extends AppCompatActivity {
 
+    public static Activity actividad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +27,11 @@ public class Principal extends AppCompatActivity {
 
         ViewPageAdapter adaptador = new ViewPageAdapter(getSupportFragmentManager(), getLifecycle());
         adaptador.addFragment(new Fragmento_Inicio());
+        adaptador.addFragment(new Fragmento_Usuario());
         adaptador.addFragment(new Fragment_Perfil());
 
         viewPager2.setAdapter(adaptador);
-        viewPager2.setOffscreenPageLimit(2);
+        viewPager2.setOffscreenPageLimit(3);
 
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
 
@@ -36,12 +40,17 @@ public class Principal extends AppCompatActivity {
                     tab.setText(R.string.title_home);
                     break;
                 case 1:
+                    tab.setText(R.string.title_user);
+                    break;
+                case 2:
                     tab.setText(R.string.title_profile);
                     break;
             }
 
         }).attach();
 
+
+        actividad = this;
 
     }
 }

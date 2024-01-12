@@ -8,11 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.darwinpz.instbmv.Objetos.Usuario;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class Registro extends AppCompatActivity {
 
-    private EditText editText_email, editText_password;
+    private EditText editText_email, editText_password,editText_nombre;
+
+    DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,9 @@ public class Registro extends AppCompatActivity {
         Button btn_registrarse = (Button) findViewById(R.id.btn_registrarse);
         editText_email = (EditText) findViewById(R.id.editText_email);
         editText_password = (EditText) findViewById(R.id.editText_password);
+        editText_nombre = (EditText) findViewById(R.id.editText_nombre);
+
+        dbRef = MainActivity.DB.getReference();
 
         toolbar.setOnClickListener(view -> finish());
 
@@ -40,6 +47,11 @@ public class Registro extends AppCompatActivity {
                                     if (user != null){
                                         user.sendEmailVerification();
                                         MainActivity.mAuth.signOut();
+                                        Usuario usuario = new Usuario();
+                                        usuario.nombre = editText_nombre.getText().toString();
+                                        usuario.email = user.getEmail();
+                                        usuario.url_foto = "";
+                                        MainActivity.ctlUsuario.crear_usuario(dbRef,user.getUid(),usuario);
                                         Toast.makeText(this, "¡Usuario creado Correctamente!, Verifica Tu Correo", Toast.LENGTH_LONG).show();
                                     }else{
                                         Toast.makeText(this, "Error al Obtener el usuario", Toast.LENGTH_SHORT).show();
