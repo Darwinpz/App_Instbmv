@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.darwinpz.instbmv.Adaptador.ViewPageAdapter;
@@ -17,6 +18,11 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class Principal extends AppCompatActivity {
 
     public static Activity actividad;
+
+    public static SharedPreferences preferencias;
+
+    public static String rol = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,30 +31,59 @@ public class Principal extends AppCompatActivity {
         ViewPager2 viewPager2 = (ViewPager2) findViewById(R.id.view_pager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
 
+        preferencias = getSharedPreferences("Instbmv",MODE_PRIVATE);
+
+        rol = preferencias.getString("rol","");
+
         ViewPageAdapter adaptador = new ViewPageAdapter(getSupportFragmentManager(), getLifecycle());
-        adaptador.addFragment(new Fragmento_Inicio());
-        adaptador.addFragment(new Fragmento_Usuario());
-        adaptador.addFragment(new Fragment_Perfil());
 
-        viewPager2.setAdapter(adaptador);
-        viewPager2.setOffscreenPageLimit(3);
+        if(rol.equals("Administrador")) {
 
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
+            adaptador.addFragment(new Fragmento_Inicio());
+            adaptador.addFragment(new Fragmento_Usuario());
+            adaptador.addFragment(new Fragment_Perfil());
 
-            switch (position){
-                case 0:
-                    tab.setText(R.string.title_home);
-                    break;
-                case 1:
-                    tab.setText(R.string.title_user);
-                    break;
-                case 2:
-                    tab.setText(R.string.title_profile);
-                    break;
-            }
+            viewPager2.setAdapter(adaptador);
+            viewPager2.setOffscreenPageLimit(3);
 
-        }).attach();
+            new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
 
+                switch (position) {
+                    case 0:
+                        tab.setText(R.string.title_home);
+                        break;
+                    case 1:
+                        tab.setText(R.string.title_user);
+                        break;
+                    case 2:
+                        tab.setText(R.string.title_profile);
+                        break;
+                }
+
+            }).attach();
+
+        }else{
+
+            adaptador.addFragment(new Fragmento_Inicio());
+            adaptador.addFragment(new Fragment_Perfil());
+
+            viewPager2.setAdapter(adaptador);
+            viewPager2.setOffscreenPageLimit(2);
+
+            new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
+
+                switch (position) {
+                    case 0:
+                        tab.setText(R.string.title_home);
+                        break;
+                    case 1:
+                        tab.setText(R.string.title_profile);
+                        break;
+                }
+
+            }).attach();
+
+        }
 
         actividad = this;
 

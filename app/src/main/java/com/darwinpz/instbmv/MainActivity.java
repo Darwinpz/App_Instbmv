@@ -3,6 +3,7 @@ package com.darwinpz.instbmv;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseAuth mAuth;
     public static FirebaseDatabase DB = FirebaseDatabase.getInstance();
     public static Ctl_usuario ctlUsuario;
+    SharedPreferences preferencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         ctlUsuario = new Ctl_usuario();
+
+        preferencias = getSharedPreferences("Instbmv",MODE_PRIVATE);
 
         btn_ingresar.setOnClickListener(view -> {
 
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser usuario = mAuth.getCurrentUser();
 
-        if(usuario!=null) {
+        if(usuario!=null && !preferencias.getString("uid","").isEmpty()) {
             Intent i = new Intent();
             i.setClass(this,Principal.class);
             startActivity(i);
