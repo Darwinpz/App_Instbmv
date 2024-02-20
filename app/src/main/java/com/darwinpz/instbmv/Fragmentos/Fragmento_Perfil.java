@@ -8,25 +8,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.darwinpz.instbmv.Controladores.Alert_dialog;
+import com.darwinpz.instbmv.GPS;
 import com.darwinpz.instbmv.MainActivity;
 import com.darwinpz.instbmv.Principal;
 import com.darwinpz.instbmv.R;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 
-public class Fragment_Perfil extends Fragment {
+public class Fragmento_Perfil extends Fragment {
 
-    private TextView txt_email;
-    private Button btn_salir;
+    private TextView txt_email, txt_nombre;
+    private Button btn_salir, btn_gps;
     private FirebaseUser usuario;
     Alert_dialog alert_dialog;
+
+    private DatabaseReference dbReference;
 
     @Nullable
     @Override
@@ -38,6 +45,10 @@ public class Fragment_Perfil extends Fragment {
         Toolbar toolbar = (Toolbar) vista.findViewById(R.id.toolbar);
         txt_email = (TextView) vista.findViewById(R.id.txt_email);
         btn_salir = (Button) vista.findViewById(R.id.btn_salir);
+        txt_nombre = vista.findViewById(R.id.txt_nombre);
+        btn_gps = vista.findViewById(R.id.btn_gps);
+
+        dbReference = MainActivity.DB.getReference();
 
 
         alert_dialog = new Alert_dialog(vista.getContext());
@@ -46,7 +57,35 @@ public class Fragment_Perfil extends Fragment {
 
         if (usuario != null){
             txt_email.setText(usuario.getEmail());
+
+            dbReference.child("usuarios").child(usuario.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot datos) {
+
+                    if(datos.exists()){
+
+                        String nombre = datos.child("nombre").getValue().toString();
+                        txt_nombre.setText(nombre);
+
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
         }
+
+        btn_gps.setOnClickListener(view -> {
+
+            startActivity(new Intent(vista.getContext(), GPS.class));
+
+        });
 
         btn_salir.setOnClickListener(view -> {
 
@@ -61,7 +100,7 @@ public class Fragment_Perfil extends Fragment {
                     editor.putString("rol","");
                     editor.apply();
                     startActivity(new Intent(vista.getContext(),MainActivity.class));
-                    requireActivity().finish();
+                    //requireActivity().finish();
 
 
                 });

@@ -8,8 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.darwinpz.instbmv.Adaptador.ViewPageAdapter;
-import com.darwinpz.instbmv.Fragmentos.Fragment_Perfil;
 import com.darwinpz.instbmv.Fragmentos.Fragmento_Inicio;
+import com.darwinpz.instbmv.Fragmentos.Fragmento_Perfil;
 import com.darwinpz.instbmv.Fragmentos.Fragmento_Usuario;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -41,7 +41,7 @@ public class Principal extends AppCompatActivity {
 
             adaptador.addFragment(new Fragmento_Inicio());
             adaptador.addFragment(new Fragmento_Usuario());
-            adaptador.addFragment(new Fragment_Perfil());
+            adaptador.addFragment(new Fragmento_Perfil());
 
             viewPager2.setAdapter(adaptador);
             viewPager2.setOffscreenPageLimit(3);
@@ -55,9 +55,6 @@ public class Principal extends AppCompatActivity {
                     case 1:
                         tab.setText(R.string.title_user);
                         break;
-                    case 2:
-                        tab.setText(R.string.title_profile);
-                        break;
                 }
 
             }).attach();
@@ -65,7 +62,7 @@ public class Principal extends AppCompatActivity {
         }else{
 
             adaptador.addFragment(new Fragmento_Inicio());
-            adaptador.addFragment(new Fragment_Perfil());
+            adaptador.addFragment(new Fragmento_Perfil());
 
             viewPager2.setAdapter(adaptador);
             viewPager2.setOffscreenPageLimit(2);
